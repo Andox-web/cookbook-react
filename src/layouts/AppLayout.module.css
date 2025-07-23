@@ -1,0 +1,25 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+}
+
+.mainArea {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 2rem;  
+}
+
+.content {
+  flex: 1 1 auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  margin: 2rem 2rem 2rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
