@@ -1,69 +1,39 @@
-# React + TypeScript + Vite
+# 🍳 Application de Gestion de Recettes de Cuisine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application React complète pour **gérer, consulter et rechercher** des recettes culinaires avec persistance des données.
 
-Currently, two official plugins are available:
+## 🚀 Fonctionnalités Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📋 Liste des Recettes
+- Affichage des recettes avec : titre, image, durée, catégorie
+- Vue condensée pour une navigation rapide
 
-## Expanding the ESLint configuration
+### 🔍 Détail d'une Recette
+- Consultation complète : ingrédients, étapes de préparation
+- Affichage des informations détaillées au clic
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ✨ Gestion des Recettes
+- Ajout de nouvelles recettes via formulaire
+- Édition des recettes existantes
+- Validation des données saisies
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🔎 Recherche & Filtres
+- Recherche texte libre (titre, ingrédients)
+- Filtrage par catégorie : Entrée, Plat, Dessert...
+- Combinaison des filtres et recherche
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### ⭐ Gestion des Favoris
+- Marquage/démarquage des recettes favorites
+- Liste dédiée pour accéder aux favoris
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🔄 Persistance des Données
+- Sauvegarde automatique dans `localStorage`
+- Conservation des données entre les sessions
+- Maintien des favoris après fermeture
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🗺 Navigation Multi-Pages
+- Routes dédiées avec React Router :
+  - `/` : Accueil avec toutes les recettes
+  - `/recipes/:id` : Détail d'une recette
+  - `/add` : Ajout d'une nouvelle recette
+  - `/favorites` : Recettes favorites
