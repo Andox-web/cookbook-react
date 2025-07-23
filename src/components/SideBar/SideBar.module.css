@@ -1,0 +1,41 @@
+.sidebar {
+  width: 16vw;
+  background: #f7fafc;
+  border-right: 1px solid #eee;
+  /* min-height: 0vh; */
+  padding: 2rem 1rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transition: 0.3s;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  color: #4a5568;
+  text-decoration: none;
+  font-weight: 500;
+  gap: 0.7rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navLink:hover {
+  background: #e6fffa;
+  color: #38a169;
+}
+
+.navIcon {
+  font-size: 1.2rem;
+}
