@@ -1,4 +1,9 @@
-export type RecipeCategory = 'Entrée' | 'Plat' | 'Dessert' | 'Boisson' | 'Autre';
+export type RecipeCategory =
+  | 'Entrée'
+  | 'Plat'
+  | 'Dessert'
+  | 'Boisson'
+  | 'Autre';
 
 export interface Recipe {
   id: string;
