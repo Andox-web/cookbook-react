@@ -1,4 +1,4 @@
-import type { Recipe } from "../types/RecipeTypes";
+import type { Recipe } from '../types/RecipeTypes';
 
 const STORAGE_KEY = 'recipes';
 
@@ -13,9 +13,9 @@ const saveAll = (recipes: Recipe[]) => {
 
 export const RecipeService = {
   getAll,
-  
+
   getById(id: string): Recipe | undefined {
-    return getAll().find(r => r.id === id);
+    return getAll().find((r) => r.id === id);
   },
 
   add(recipe: Recipe): void {
@@ -25,12 +25,12 @@ export const RecipeService = {
   },
 
   update(updated: Recipe): void {
-    const recipes = getAll().map(r => r.id === updated.id ? updated : r);
+    const recipes = getAll().map((r) => (r.id === updated.id ? updated : r));
     saveAll(recipes);
   },
 
   toggleFavorite(id: string): void {
-    const recipes = getAll().map(r => 
+    const recipes = getAll().map((r) =>
       r.id === id ? { ...r, isFavorite: !r.isFavorite } : r
     );
     saveAll(recipes);
@@ -38,14 +38,15 @@ export const RecipeService = {
 
   search(query: string, category?: string): Recipe[] {
     const lowerQuery = query.toLowerCase();
-    return getAll().filter(r => 
-      (r.title.toLowerCase().includes(lowerQuery) ||
-       r.ingredients.some(i => i.toLowerCase().includes(lowerQuery))) &&
-      (!category || r.category === category)
+    return getAll().filter(
+      (r) =>
+        (r.title.toLowerCase().includes(lowerQuery) ||
+          r.ingredients.some((i) => i.toLowerCase().includes(lowerQuery))) &&
+        (!category || r.category === category)
     );
   },
 
   getFavorites(): Recipe[] {
-    return getAll().filter(r => r.isFavorite);
-  }
+    return getAll().filter((r) => r.isFavorite);
+  },
 };
