@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import type { Recipe } from '../../types/RecipeTypes';
+import type { Recipe, RecipeCategory } from '../../types/RecipeTypes';
 import { RecipeService } from '../../services/recipeService';
-import { FaLeaf, FaClock, FaStar, FaRegStar, FaUtensils, FaEye } from 'react-icons/fa';
+import { FaLeaf, FaClock, FaStar, FaRegStar, FaUtensils, FaEye, FaSearch } from 'react-icons/fa';
 import styles from './Home.module.css';
 
 const testRecipes: Recipe[] = [
@@ -107,8 +107,19 @@ const testRecipes: Recipe[] = [
   },
 ];
 
+const categories: (RecipeCategory | 'Toutes')[] = [
+  'Toutes',
+  'Entrée',
+  'Plat',
+  'Dessert',
+  'Boisson',
+  'Autre',
+];
+
 export const Home: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState<RecipeCategory | 'Toutes'>('Toutes');
 
   useEffect(() => {
     if (RecipeService.getAll().length === 0) {
@@ -127,14 +138,47 @@ export const Home: React.FC = () => {
     alert('Voir détails pour la recette ' + id);
   };
 
+  // Filtrage
+  const filteredRecipes = recipes.filter((recipe) => {
+    const matchCategory = category === 'Toutes' || recipe.category === category;
+    const matchSearch =
+      search.trim() === '' ||
+      recipe.title.toLowerCase().includes(search.toLowerCase()) ||
+      recipe.ingredients.some((ing) => ing.toLowerCase().includes(search.toLowerCase()));
+    return matchCategory && matchSearch;
+  });
+
   return (
     <div className={styles.homeBg}>
       <h1 className={styles.title}>
         <FaLeaf style={{ verticalAlign: 'middle', marginRight: 10 }} />
         Recettes
       </h1>
+      <div className={styles.filterBar}>
+        <div className={styles.searchContainer}>
+          <FaSearch className={styles.searchIcon} />
+          <input
+            type="text"
+            placeholder="Rechercher une recette ou un ingrédient..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className={styles.searchInput}
+          />
+        </div>
+        <select
+          className={styles.categorySelect}
+          value={category}
+          onChange={(e) => setCategory(e.target.value as RecipeCategory | 'Toutes')}
+        >
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className={styles.cardGrid}>
-        {recipes.map((recipe) => (
+        {filteredRecipes.map((recipe) => (
           <div key={recipe.id} className={styles.card}>
             {recipe.image && <img src={recipe.image} alt={recipe.title} className={styles.img} />}
             <div className={styles.cardTitle}>
