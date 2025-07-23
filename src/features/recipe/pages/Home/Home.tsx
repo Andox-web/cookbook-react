@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import type { Recipe, RecipeCategory } from '../../types/RecipeTypes';
 import { RecipeService } from '../../services/recipeService';
 import { FaLeaf, FaClock, FaStar, FaRegStar, FaUtensils, FaEye, FaSearch } from 'react-icons/fa';
-import styles from './Favorites.module.css';
+import styles from './Home.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const categories: (RecipeCategory | 'Toutes')[] = [
   'Toutes',
@@ -13,23 +14,23 @@ const categories: (RecipeCategory | 'Toutes')[] = [
   'Autre',
 ];
 
-export const Favorites: React.FC = () => {
+export const Home: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<RecipeCategory | 'Toutes'>('Toutes');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setRecipes(RecipeService.getFavorites());
+    setRecipes(RecipeService.getAll());
   }, []);
 
   const handleToggleFavorite = (id: string) => {
     RecipeService.toggleFavorite(id);
-    setRecipes(RecipeService.getFavorites());
+    setRecipes(RecipeService.getAll());
   };
 
   const handleSeeDetails = (id: string) => {
-    // À remplacer par ta navigation ou modal
-    alert('Voir détails pour la recette ' + id);
+    navigate(`/recipes/${id}`);
   };
 
   // Filtrage
@@ -46,7 +47,7 @@ export const Favorites: React.FC = () => {
     <div className={styles.homeBg}>
       <h1 className={styles.title}>
         <FaLeaf style={{ verticalAlign: 'middle', marginRight: 10 }} />
-        Vos Recettes Favorites
+        Recettes
       </h1>
       <div className={styles.filterBar}>
         <div className={styles.searchContainer}>
