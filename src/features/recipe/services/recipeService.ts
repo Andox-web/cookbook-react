@@ -30,9 +30,7 @@ export const RecipeService = {
   },
 
   toggleFavorite(id: string): void {
-    const recipes = getAll().map((r) =>
-      r.id === id ? { ...r, isFavorite: !r.isFavorite } : r
-    );
+    const recipes = getAll().map((r) => (r.id === id ? { ...r, isFavorite: !r.isFavorite } : r));
     saveAll(recipes);
   },
 
@@ -42,7 +40,7 @@ export const RecipeService = {
       (r) =>
         (r.title.toLowerCase().includes(lowerQuery) ||
           r.ingredients.some((i) => i.toLowerCase().includes(lowerQuery))) &&
-        (!category || r.category === category)
+        (!category || r.category === category),
     );
   },
 
