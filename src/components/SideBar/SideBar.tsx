@@ -11,7 +11,7 @@ const Sidebar: React.FC = () => (
       </a>
       <a href="/add" className={styles.navLink}>
         <FaUtensils className={styles.navIcon} />
-        Recettes
+        Ajouter recette
       </a>
       <a href="/favorites" className={styles.navLink}>
         <FaHeart className={styles.navIcon} />
