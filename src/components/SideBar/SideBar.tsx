@@ -1,6 +1,6 @@
-import React from "react";
-import { FaHome, FaUtensils, FaHeart } from "react-icons/fa";
-import styles from "./Sidebar.module.css";
+import React from 'react';
+import { FaHome, FaUtensils, FaHeart } from 'react-icons/fa';
+import styles from './Sidebar.module.css';
 
 const Sidebar: React.FC = () => (
   <aside className={styles.sidebar}>
